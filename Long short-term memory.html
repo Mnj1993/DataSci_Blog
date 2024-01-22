@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Introduction to Long short-term memory (LSTM) and Implementation of LSTM</title>
+    <link rel="stylesheet" href="Long short-term memory.css"> <!-- Link to your CSS file for styling -->
+    <style>
+        .numbered-paragraph {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .text {
+            text-align: justify;
+            margin-left: 15px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border: 1px solid #ccc;
+            display: block;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>An Introduction to Long short-term memory (LSTM) and Implementation of LSTM</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="upload.html">Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main-content">
+        <!-- Your content goes here -->
+        <!-- ... (The content you provided in your request) ... -->
+
+        <h2>Long Short-Term Memory (LSTM)</h2>
+        
+        <p>Long Short-Term Memory (LSTM) is a type of recurrent neural network (RNN) architecture designed to address the vanishing gradient problem that can occur in traditional RNNs. LSTMs are particularly well-suited for tasks involving sequences and time-series data due to their ability to capture long-term dependencies and handle information flow over extended periods.</p>       
+        <img src="Images/LSTM.png"></img>
+        <p>Here's an overview of the key concepts in LSTM:</p>
+
+        <div class="numbered-paragraph">           
+            <div class="text"><b>1. Recurrent Neural Networks (RNNs):</b> Traditional RNNs have a challenge called the vanishing gradient problem, where the gradients of weights diminish during backpropagation through time. This limits the model's ability to capture long-range dependencies in sequential data.</div>
+            <div class="text"><b>2. Memory Cells: </b>The memory cell is a key component of LSTM. It allows the network to maintain and update a memory state over time. This enables LSTMs to capture long-term dependencies by selectively updating or forgetting information.</p></div>
+        </div>
+
+        <div class="numbered-paragraph"> 
+            <div class="text"><b>3. LSTM Architecture: </b>LSTMs address the vanishing gradient problem by introducing a more complex architecture with specialized units known as memory cells. The LSTM cell consists of three gates:<br><b>-Input Gate: </b>Regulates the flow of information into the cell.<br><b>-Forget Gate:</b> Controls what information should be discarded from the cell.<br><b>-Output Gate:</b> Determines the output based on the cell's current state.</p></div>
+            <div class="text"><b>4. Hidden State: </b>LSTMs also have a hidden state that carries information across time steps. The hidden state is updated at each time step based on the input, previous hidden state, and the memory cell's state.</div>
+        </div>
+
+        <div class="numbered-paragraph">
+            <div class="text"><b>5. Training and Backpropagation Through Time (BPTT): </b>LSTMs are trained using backpropagation through time. The gradients are calculated and adjusted during training to optimize the model for a specific task, such as sequence prediction or classification.</div>
+            <div class="text"><b>6. Applications of LSTMs: </b>LSTMs are widely used in natural language processing (NLP), speech recognition, time-series prediction, and various other tasks involving sequential data. They excel in tasks where understanding and capturing long-range dependencies are crucial, such as language modeling, machine translation, and speech synthesis.</div>
+        </div>
+    
+        <div class="numbered-paragraph">
+            <div class="text"><b>7. Variants of LSTMs: </b>Over time, researchers have introduced variants and improvements to the basic LSTM architecture. For example, Gated Recurrent Units (GRUs) are a simplified version of LSTMs that also address the vanishing gradient problem.</div>
+            <div class="text"><b>8. TensorFlow and PyTorch Implementations: </b>Both TensorFlow and PyTorch, popular deep learning frameworks, provide implementations of LSTM layers, making it easier for practitioners to incorporate LSTMs into their models.</div>
+        </div>       
+  
+        <p>LSTMs have proven to be powerful in capturing sequential dependencies and are a fundamental building block for various applications in deep learning. They have played a crucial role in advancing the capabilities of recurrent neural networks in handling sequential data.</p>
+        
+        <h3>Why LSTM when we have RNN?</h3>
+        <p align="justify">A sentence or phrase only holds meaning when every word in it is associated with its previous word and the next one. LSTM, short for Long Short Term Memory, as opposed to RNN, extends it by creating both short-term and long-term memory components to efficiently study and learn sequential data. Hence, it’s great for Machine Translation, Speech Recognition, time-series analysis, etc.</p>
+
+        <h3>Implementation of LSTM</h3>
+        <h5>Step 1: Import Dependencies and Code Activation Functions</h5>
+        <pre><code>
+            import random
+            import numpy as np
+            import math
+            
+            def sigmoid(x): 
+                return 1. / (1 + np.exp(-x))
+            
+            def sigmoid_derivative(values): 
+                return values*(1-values)
+            
+            def tanh_derivative(values): 
+                return 1. - values ** 2
+            
+            # createst uniform random array w/ values in [a, b] and shape args
+            def rand_arr(a, b, *args): 
+                np.random.seed(0)
+                return np.random.rand(*args) * (b - a) + a
+            </code></pre>
+
+        <ul>
+            <li>sigmoid(x): Sigmoid activation function that squashes input values between 0 and 1.</li>
+            <li>sigmoid_derivative(values): Derivative of the sigmoid functio</li>
+            <li>tanh_derivative(values): Derivative of the hyperbolic tangent (tanh) function.</li>
+            <li>rand_arr(a, b, *args): Creates a uniform random array with values in the range [a, b] and specified shape.</li>
+        </ul>
+
+        <h5>Step 2: Initializing Biases and Weight Matrices</h5>
+        <pre><code>
+            class LstmParam:
+            def __init__(self, mem_cell_ct, x_dim):
+            self.mem_cell_ct = mem_cell_ct
+            self.x_dim = x_dim
+            concat_len = x_dim + mem_cell_ct
+
+            # Weight matrices
+            self.wg = rand_arr(-0.1, 0.1, mem_cell_ct, concat_len)
+            self.wi = rand_arr(-0.1, 0.1, mem_cell_ct, concat_len) 
+            self.wf = rand_arr(-0.1, 0.1, mem_cell_ct, concat_len)
+            self.wo = rand_arr(-0.1, 0.1, mem_cell_ct, concat_len)
+
+            # Bias terms
+            self.bg = rand_arr(-0.1, 0.1, mem_cell_ct) 
+            self.bi = rand_arr(-0.1, 0.1, mem_cell_ct) 
+            self.bf = rand_arr(-0.1, 0.1, mem_cell_ct) 
+            self.bo = rand_arr(-0.1, 0.1, mem_cell_ct) 
+
+            # Diffs (derivative of the loss function w.r.t. all parameters)
+            self.wg_diff = np.zeros((mem_cell_ct, concat_len)) 
+            self.wi_diff = np.zeros((mem_cell_ct, concat_len)) 
+            self.wf_diff = np.zeros((mem_cell_ct, concat_len)) 
+            self.wo_diff = np.zeros((mem_cell_ct, concat_len)) 
+            self.bg_diff = np.zeros(mem_cell_ct) 
+            self.bi_diff = np.zeros(mem_cell_ct) 
+            self.bf_diff = np.zeros(mem_cell_ct) 
+            self.bo_diff = np.zeros(mem_cell_ct)
+        </code></pre>
+
+        <ul>
+            <li>LstmParam class initializes parameters for an LSTM cell, including weight matrices (wg, wi, wf, wo) and bias terms (bg, bi, bf, bo).</li>
+        </ul>
+        
+        <h5>Step 3: Multiplying Forget Gate with Last Cell State to Forget Irrelevant Tokens</h5>
+        <pre><code>
+            # Stacking x (present input xt) and h(t-1)
+            xc = np.hstack((x,  h_prev))
+
+            # Dot product of Wf (forget weight matrix and xc + bias)
+            self.state.f = sigmoid(np.dot(self.param.wf, xc) + self.param.bf)
+
+            # Multiplying forget_gate (self.state.f) with previous cell state (s_prev)
+            # to get the present state.
+            self.state.s = self.state.g * self.state.i + s_prev * self.state.f
+        </code></pre>
+        <ul>
+            <li>Stacks the present input x and the previous hidden state h_prev.</li>
+            <li>Calculates the forget gate activation (self.state.f) using the sigmoid function.</li>
+            <li>Multiplies the forget gate with the previous cell state and input gate to get the present cell state.</li>
+        </ul>
+
+        <h5>Step 4: Sigmoid Activation Decides Which Values to Take In, and tanh Transforms New Tokens to Vectors</h5>
+        <pre><code>
+            # xc already calculated above
+            self.state.i = sigmoid(np.dot(self.param.wi, xc) + self.param.bi)
+
+            # C(t)
+            self.state.g = np.tanh(np.dot(self.param.wg, xc) + self.param.bg)
+        </code></pre>
+        <ul>
+            <li>Calculates the input gate activation (self.state.i) using the sigmoid function.</li>
+            <li>Calculates new cell state candidates (self.state.g) using the hyperbolic tangent (tanh) function.</li>
+        </ul>
+
+        <h5>Step 5: Calculate the Present Cell State</h5>
+        <pre><code>
+            # To calculate the present state
+            self.state.s = self.state.g * self.state.i + s_prev * self.state.f
+        </code></pre>
+        <ul>
+            <li>Calculates the present cell state (self.state.s) by combining the new cell state (self.state.g) with the product of the input gate and previous cell state.</li>
+        </ul>
+
+        <h5>Step 6: Calculate the Output State</h5>
+        <pre><code>
+            # To calculate the output state
+            self.state.o = sigmoid(np.dot(self.param.wo, xc) + self.param.bo)
+            
+            # Output state h
+            self.state.h = self.state.s * self.state.o            
+        </code></pre>
+        <ul>
+            <li>Calculates the output gate activation (self.state.o) using the sigmoid function.</li>
+            <li>Calculates the output state (self.state.h) by combining the present cell state and the output gate.</li>
+        </ul>
+
+        <p align="justify">This code represents the forward pass of an LSTM cell, calculating the cell state and output state based on input, previous hidden state, and parameters. It's part of the LSTM (Long Short-Term Memory) network commonly used in sequence modeling tasks.</p>
+
+        <h3>Applications of LSTM</h3>
+        <p align="Justify">Long Short-Term Memory (LSTM) networks find applications in various domains due to their ability to capture and model sequential dependencies effectively. Here are some key applications of LSTMs:</p>
+        <p align="Justify"><b>Speech Recognition:</b>LSTMs are employed in speech recognition systems to model and recognize patterns in spoken language, enabling applications like voice assistants and transcription services.</p>
+        <p align="Justify"><b>Financial Forecasting:</b>LSTMs are applied in finance for predicting financial market trends, stock prices, and currency exchange rates.</p>
+        <p align="Justify"><b>Autonomous Vehicles:</b>LSTMs contribute to the perception module of autonomous vehicles, helping analyze sequences of sensor data to understand the vehicle's surroundings and make decisions.</p>
+        <p align="Justify"><b>Gesture Recognition:</b>LSTMs are applied in computer vision for gesture recognition, where they can model and recognize temporal patterns in sequences of gestures.</p>
+        <p align="Justify"><b>Energy Consumption Forecasting:</b>LSTMs are used to predict energy consumption patterns, helping energy providers optimize resource allocation and plan for demand fluctuations.</p>
+        
+
+
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Static Website</p>
+    </footer>
+
+</body>
+</html>
