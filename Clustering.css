@@ -1,0 +1,73 @@
+/* classification.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.main-content h1, .main-content h4 {
+    color: #333;
+}
+
+.main-content p {
+    color: #666;
+}
+
+.nospace {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    color: #666;
+}
+.main-content img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+/* Add smooth scrolling to anchor links */
+html {
+    scroll-behavior: smooth;
+}

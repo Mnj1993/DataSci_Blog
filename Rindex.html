@@ -1,0 +1,231 @@
+<html>
+<body>
+  <p> 03 Jul 2017      4 mins read.  </p>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#section1">Section 1</a></li>
+        <li><a href="#section2">Section 2</a></li>
+        <!-- More list items for navigation -->
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="section1">
+      <h2>Section 1</h2>
+      <p>Content for Section 1
+      	uppose the model is trying to predict the medical condition of a patient in the emergency room on basis of his symptoms. Let the symptoms be stroke, drug overdose and epileptic seizure. The response variable can be encoded as Y = 1 if stroke; Y = 2 if drug overdose and Y = 3 if epileptic seizure. This coding can be used to fit a linear model based on the predictors. But this coding tells that the difference between stroke and overdose is the same as the difference between overdose and seizure. If someone else gives another coding where Y = 1 if epileptic seizure, Y = 2 if stroke and Y = 3 if drug overdose, then this implies a totally different relationship among the three conditions and these coding would produce a different linear model with a diverse set of predictions which are not the same produced by the first encoding. So, there is no way to convert a qualitative response variable with more than two levels into a quantitative response that is ready for linear regression.
+
+If there are just two possibilities of the patients medical condition say stroke and drug overdose then the coding for response variable can be Y = 0 if stroke and Y = 1 if drug overdose or vice versa. Either of the encoding would produce the same final predictions. But some of the predictions made can lie outside the [0,1] range making it hard to interpret. So it is always better to use a classification method for qualitative response values.
+
+Logistic Regression
+Rather than modeling the response directly, logistic regression models the probability that response belongs to a particular category. User needs to set the threshold for the category, it may be greater than 0.5 for someone while its greater than 0.1 for someone to be labeled as a certain category of the response.
+
+Any time a straight line is fit to a binary response that is coded as 0 or 1, the prediction p(X) would be < 0 for some observations while p(X) > 0 for some unless range of X is limited. To avoid this problem, the model should be done using a function that gives outputs between 0 and 1 for all the values of X. One of such functions is logistic function which is given by
+
+p(x)=eβ0+β1X1+eβ0+β1X
+To fit the model, maximum likelihood is used. Even for low values of X, the probability would never go below 0 and for high values, the probability would never go beyond 1 (though it can go very close to 0 or 1).
+
+Manipulating the above equation gives
+
+p(x)1−p(x)=eβ0+β1X
+The LHS of the new equation is called as odds and takes values between 0 and ∞.
+
+Taking the logs on both sides, the equation becomes
+
+log(p(x)1−p(x))=β0+β1X
+The LHS of the above equation is called as logit or log-odds.
+
+In a logistic regression model, increasing X by one unit changes the log odds by β1
+ or multiplies the odds by eβ1
+. But as the relationship between p(X) and X is not a straight line, β1
+ doesn’t correspond to the change in p(X) associated with a one-unit increase in X. The amount that p(X) changes due to a one-unit change in X will depend on the current value of X. Still if β1
+ is positive, then increasing X would lead to increase in p(X) and vice versa, irrespective the value of X.
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+
+Maximum likelihood is used to fit the model rather than least squares method as it has better statistical properties. Maximum likelihood is the procedure of finding the value of one or more parameters for a given statistic which makes the known likelihood distribution a maximum. It is used as estimates for β0
+ and β1
+ are intended to found out which can then be plugged into the model for p(X) to yield results which are near to the intended results i.e. categories. Maximum likelihood can be used to fit other non-linear models also and even least squares method is a special case of maximum likelihood. Statistical software packages like R, python-sklearn, etc can be used to fit logistic regression and other models without any concern of maximum likelihood fitting procedure.
+
+Multiple Logistic Regression
+With analogy from linear regression to multiple linear regression, when there are multiple predictors, the logistic model can be extended to
+
+p(X)=eβ0+β1X1+…+βpXp1+β0+β1X1+…+βpXp
+where X1,X2,…,Xp
+ are the p predictors.
+
+Logistic regression for > 2 Response classes
+In the earlier example about medical conditions in emergency room, a logistic regression model can be used for the multiple possible outcomes but they are not used that often. Instead Linear Discriminant Analysis is the popular method for multiple-class classification.
+
+References
+James G., Witten D., Hastie T., Tibshirani R. (2013). An introduction to Statistical Learning. New York, NY: Springer
+
+</p>
+    </section>
+
+    <section id="section2">
+      <h2>Section 2</h2>
+      <p>Content for Section 2</p>
+    </section>
+    <!-- More sections with unique IDs -->
+  </main>
+
+  <script>
+  	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+
+</script>
+</body>
+</html>

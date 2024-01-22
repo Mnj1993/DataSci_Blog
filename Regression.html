@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> An Introduction to Linear Regression</title>
+    <link rel="stylesheet" href="Regression.css"> <!-- Link to your CSS file for styling -->
+    <style>
+
+        /* Add this style to create rectangles around the list items */
+        .nav-container {
+            margin-top: 10px; /* Add some margin between sections */
+            list-style: none;
+            padding: 10px;
+            border: 1px solid #0e0404;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .nav-container {
+            margin-bottom: 0; /* Eliminate extra margin at the bottom */
+        }
+
+        .tab {
+            margin-left: 20px; /* Adjust the indentation as needed */
+        }
+
+        .dark-text {
+            color: black; /* You can use any color here */
+            opacity: 1; /* Adjust the opacity value (0 to 1) for darkness */
+        }
+
+        .gray-text {
+            color: rgb(9, 9, 9); /* You can use any color here */
+            opacity: 0.9; /* Adjust the opacity value (0 to 1) for darkness */
+        }
+    </style>
+    <script>
+        // Always scroll to the top when the page loads or is refreshed
+        document.addEventListener('DOMContentLoaded', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>An Introduction to Linear Regression</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="upload.html">Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main-content">
+        <!-- Your content goes here -->
+        <!-- ... (The content you provided in your request) ... -->
+        <div class="nav-container">
+            <h3 class="tab">Content:</h3>
+            <ul><a href="#section1">1.An Introduction to Linear Regression</a></ul>
+            <ul><a href="#section2">2.what is Linear Regression?</a></ul>
+            <ul><a href="#section3">3.The obstacle in Linear Regression</a></ul>
+            <ul><a href="#section4">4.Optimization Techniques for Linear Regression</a></ul>
+            <ul><a href="#section4.1" class="tab">Gradient Descent</a></ul>
+            <ul><a href="#section4.2" class="tab">Stochastic Gradient Descent</a></ul>
+            <ul><a href="#section4.3" class="tab">Mini-Batch Gradient Descent</a></ul>
+            <ul><a href="#section4.4" class="tab">Normal Equation</a></ul>
+            <ul><a href="#section4.5" class="tab">Ridge Regression (L2 Regularization)</a></ul>
+
+            <!--ul><a href="#section6.2" class="tab">Multi-class classification</a></ul>
+            <ul><a href="#section6.3" class="tab">Multi-Label Classification</a></ul>
+            <ul><a href="#section6.4" class="tab">Imbalanced Classification</a></ul-->
+        </div>
+
+        <h1 id="section1">An Introduction to Linear Regression</h1>
+        <p align="justify">  The field of Data Science has undergone remarkable evolution, assimilating diverse domains like Statistics, Linear Algebra, Machine Learning, and Databases and intricately blending them for optimal synergy. Yet, at its core, what sets this domain apart and makes it exceptionally dynamic? - The formidable statistical algorithms.</p>
+        <p align="justify">  Regression is a type of supervised machine learning task where the goal is to predict a continuous numerical output variable based on one or more input features. In regression analysis, the algorithm learns the relationship between the input features and the target variable from labeled training data.</p>            
+        <p align="justify">  The objective of regression is to model the underlying pattern or trend in the data so that the algorithm can make predictions on new, unseen data. The output variable in regression is quantitative and represents a range of possible values. Common applications of regression include predicting house prices, stock prices, temperature, sales, and various other numeric outcomes.</p>
+        <p align="justify">  There are different types of regression models, including linear regression, polynomial regression, ridge regression, and support vector regression, among others. The choice of regression model depends on the nature of the data and the underlying relationship between the input features and the target variable.</p>
+        <p align="justify">  One such fundamental statistical algorithm is Linear Regression. Despite its age, it remains perpetually relevant and should not be overlooked by an emerging data scientist like yourself. Understanding the foundational principles behind linear regression is essential for grasping the evolution of an entire class of statistical algorithms known as Generalized Linear Models. Additionally, this comprehension contributes to a broader understanding of other components of a typical statistical/machine learning algorithm, including aspects such as cost functions, coefficients, optimization, and more. As you delve into the intricacies of Linear Regression, you pave the way for a deeper exploration of the broader landscape of data science methodologies.</p>
+
+        <h4 id="section2">what is Linear Regression?</h4>
+        <p align="justify">Linear regression is a statistical method and a fundamental algorithm in machine learning used for modeling the relationship between a dependent variable (target) and one or more independent variables (features). The goal of linear regression is to find the best-fit linear relationship (line) that predicts the dependent variable based on the given independent variables.</p>
+        <p align="justify">In simple linear regression, there is one independent variable, while in multiple linear regression, there are multiple independent variables. The linear relationship is represented by the equation of a straight line:</p>
+        <p align="center" class="dark-text"><b><i>&#x3A5;</i> = <i>b</i><sub>0</sub> + <i>b</i><sub>1</sub><i>X</i><sub>1</sub> + <i>b</i><sub>2</sub><i>X</i><sub>2</sub> + ... + <i>b</i><sub>n</sub><i>X</i><sub>n</sub></b></p>
+        <p>Where:</p>
+        <ul class="gray-text">
+            <li><i class="dark-text">Y</i> is the dependent variable (target),</li>
+            <li><i class="dark-text">b</i><sub class="dark-text">0</sub> is the intercept,</li>
+            <li><i class="dark-text">b</i><sub class="dark-text">1</sub>,<i class="dark-text">b</i><sub class="dark-text">2</sub>, ... ,<i class="dark-text">b</i><sub class="dark-text">n</sub> are the coefficients for the independent variables <i class="dark-text">b</i><sub class="dark-text">1</sub>,<i class="dark-text">b</i><sub class="dark-text">2</sub>, ... ,<i class="dark-text">b</i><sub class="dark-text">n</sub> </li>
+        </ul>
+        <p align="justify">The coefficients are estimated during the training process to minimize the difference between the predicted values and the actual values. Linear regression is widely used for tasks such as predicting house prices, stock prices, or any other continuous numeric outcome based on given input features.</p>
+
+        <h4 id="section3">The obstacle in Linear Regression:</h4>
+        <p align="justify">While linear regression is a powerful and widely used tool, it is essential to be aware of potential challenges and limitations associated with this method. Some hurdles in linear regression include:</p>
+        <p align="justify"><b>1. Assumption of Linearity:</b> Linear regression assumes a linear relationship between the independent and dependent variables. If the true relationship is nonlinear, linear regression may not capture the underlying pattern accurately.</p>
+        <p align="justify"><b>2. Assumption of Independence:</b> The independence of observations is assumed in linear regression. If there is dependence among observations, it can lead to biased and inefficient estimates.</p>
+        <p align="justify"><b>3. Assumption of Homoscedasticity:</b> Linear regression assumes that the variance of the errors is constant across all levels of the independent variable(s). Heteroscedasticity, where the variance of errors is not constant, can affect the accuracy of predictions.</p>
+        <p align="justify"><b>4. Assumption of Normality:</b> The residuals (the differences between actual and predicted values) are assumed to be normally distributed. Departure from normality can impact the validity of statistical inferences.</p>
+        <p align="justify"><b>5. Multicollinearity:</b> This occurs when independent variables are highly correlated, making it challenging to separate their individual effects on the dependent variable. It can lead to unstable coefficient estimates.</p>
+        <p align="justify"><b>6. Outliers and Influential Points:</b> Outliers and influential points can significantly impact the results of linear regression. They can distort the estimated coefficients and affect the overall fit of the model.</p>
+        <p align="justify"><b>7. Overfitting or Underfitting:</b> If the model is too complex, it may overfit the training data and perform poorly on new data. On the other hand, an overly simple model may underfit the data, failing to capture important patterns.</p>
+        <p align="justify"><b>8. Non-constant Variance of Residuals:</b> The assumption of homoscedasticity also requires the residuals to have a constant variance. If the variance changes across levels of the independent variable, it violates this assumption.</p>
+        
+        <h4 id="section4">Optimization Techniques for Linear Regression:</h4>
+        <p>In this section, you will take a brief look at some techniques to prepare a linear regression model.</p>
+        
+        <h4 id="section4.1"class="gray-text">Gradient Descent:</h4>
+        <img src="Images/GD.png"></img>
+        <p align="justify">Gradient Descent is an iterative optimization algorithm widely used in machine learning, especially in linear regression. The algorithm starts with initial parameter values and iteratively adjusts them to minimize a cost function, typically the Mean Squared Error (MSE) in linear regression. It calculates the gradients of the cost function with respect to each parameter, indicating the direction and magnitude of the steepest ascent. The parameters are updated by subtracting the product of the gradient and a learning rate. This process continues until convergence, where the algorithm finds parameter values that result in the minimum cost.</p>
+        <p>The key formula for updating a parameter &#x3B8;j :</p>
+        <p align="center"><b>&#x3B8;j = &#x3B8;j - &alpha;(&part;J(&#x3B8;) / &part;&#x3B8;j)</b></p>
+        <p> where <b>&alpha;</b> is the learning rate, <b>J(&#x3B8;) </b>is the cost function, and <b>(&part;J(&#x3B8;) / &part;&#x3B8;j)</b> is the partial derivative of the cost function with respect <b>&part;J(&#x3B8;)</b>.</p>
+      
+        <h4 id="section4.2"class="gray-text">Stochastic Gradient Descent:</h4>
+        <p align="justify">Stochastic Gradient Descent (SGD) is an optimization algorithm used in machine learning to train models, especially on large datasets. Unlike traditional gradient descent, which processes the entire dataset in each iteration, SGD updates the model parameters using a single randomly selected training example at a time. This introduces randomness, making it computationally faster and more suitable for extensive datasets.<br> <br> The algorithm iteratively shuffles and processes each training example, computing gradients and updating parameters accordingly. While the stochastic nature introduces noise, it allows for more frequent updates and is particularly effective in scenarios with vast amounts of data, where computing gradients for the entire dataset in each iteration is impractical. Adjusting the learning rate over time helps mitigate potential oscillations in the convergence process.
+        
+        <h4 id="section4.3" class="gray-text">Mini-Batch Gradient Descent:</h4>
+        <p align="justify">Mini-Batch Gradient Descent is an optimization algorithm used in machine learning for training models that strikes a balance between the efficiency of Stochastic Gradient Descent (SGD) and the stability of Batch Gradient Descent. Instead of processing the entire dataset (Batch GD) or just one example (SGD) in each iteration, Mini-Batch GD divides the dataset into smaller batches and updates the model parameters based on the average gradient computed from a randomly selected batch.<br><br> This approach combines the benefits of faster convergence due to more frequent updates than Batch GD, while still benefiting from the reduced variance in parameter updates compared to pure SGD. The batch size is a hyperparameter that influences the algorithm's performance, allowing practitioners to tailor the method to the computational resources available and the characteristics of the dataset. Mini-Batch GD is widely used, especially in scenarios where the dataset is large, and computational efficiency is crucial.</p>
+
+        <h4 id="section4.4" class="gray-text">Normal Equation:</h4>
+        <p align="justify">The Normal Equation is a closed-form analytical solution to find the optimal parameters for a linear regression model without the need for iterative optimization algorithms like gradient descent. It provides a direct solution by setting the derivative of the cost function with respect to the model parameters to zero. In the context of linear regression, the Normal Equation is formulated as:</p>
+        <p align="center"><b> &#x3B8; = (X<sup>T</sup>X)<sup>-1</sup>X<sup>T</sup>y</b></p>
+        <p>Where:</p>
+        <ul class="gray-text">
+            <li><i class="dark-text"><b>&#x3B8; </b></i> is the vector of parameters (coefficients),</li>
+            <li><i class="dark-text"><b>X</b></i> is the matrix of input features,</li>
+                <li><i class="dark-text"><b>y</b></i> is the vector of target values.</li>
+        </ul>
+        <p align="justify">The superscript T denotes the transpose of a matrix. The formula essentially involves matrix operations – multiplying matrices, finding the inverse, and matrix transpose. By applying the Normal Equation, one can directly compute the optimal parameters that minimize the Mean Squared Error (MSE) or any other chosen cost function.</p>
+        <p align="justify">While the Normal Equation provides an elegant solution, it may not be computationally efficient for very large datasets or datasets with multicollinearity. In such cases, iterative optimization algorithms like gradient descent or variants are often preferred. However, for small to moderately sized datasets where matrix inversion is feasible, the Normal Equation offers a straightforward and efficient approach to obtaining the optimal parameters for a linear regression model.</p>
+        <h4 id="section4.5" class="gray-text">Ridge Regression (L2 Regularization):</h4>
+        <p align="justify">Ridge Regression, also known as Tikhonov regularization or L2 regularization, is an extension of linear regression that includes a regularization term in the cost function. The regularization term is added to prevent overfitting and to address multicollinearity among the input features. In Ridge Regression, the cost function is augmented with a penalty term proportional to the square of the L2 norm of the model parameters. The objective is to find the values of the parameters that not only minimize the difference between predicted and actual values (the ordinary least squares term) but also penalize the parameters for being too large. The Ridge Regression cost function is given by:</p>
+    
+        <p align="center">J(&#x3B8;) = MSE(&#x3B8;) + &alpha;<font size=+2>&#x3A3;</font><sup>n</sup><sub>i=0</sub> (&#x3B8;<sub>i</sub>)<sup>2</sup></p>
+        <p>Where:</p>
+        <ul class="gray-text">
+            <li><i class="dark-text"><b>J(&#x3B8;)</b></i> is the cost function,</li>
+            <li><i class="dark-text"><b>MSE(&#x3B8;)</b></i> is the Mean Squared Error term (ordinary least squares),</li>
+            <li><i class="dark-text"><b>&alpha;</b></i> is the regularization parameter,</li>
+            <li><i class="dark-text"><b>(&#x3B8;<sub>i</sub>)</b></i> are the model parameters.</li>
+        </ul>
+
+    </body>
+    </section>
+
+    <footer>
+        <p>Copyrights &copy; 2024 by Manoj Nagarajan</p>
+    </footer>
+
+</body>
+</html>

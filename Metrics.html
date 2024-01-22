@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrics to Evaluate Machine Learning Classification Algorithms</title>
+    <link rel="stylesheet" href="Metrics.css"> <!-- Link to your CSS file for styling -->
+    <style>
+
+        /* Add this style to create rectangles around the list items */
+        .nav-container {
+            margin-top: 10px; /* Add some margin between sections */
+            list-style: none;
+            padding: 10px;
+            border: 1px solid #0e0404;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .nav-container {
+            margin-bottom: 0; /* Eliminate extra margin at the bottom */
+        }
+
+        .tab {
+            margin-left: 20px; /* Adjust the indentation as needed */
+        }
+
+        .dark-text {
+            color: black; /* You can use any color here */
+            opacity: 1; /* Adjust the opacity value (0 to 1) for darkness */
+        }
+
+        .gray-text {
+            color: rgb(9, 9, 9); /* You can use any color here */
+            opacity: 0.9; /* Adjust the opacity value (0 to 1) for darkness */
+        }
+    </style>
+    <script>
+        // Always scroll to the top when the page loads or is refreshed
+        document.addEventListener('DOMContentLoaded', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Metrics to Evaluate Machine Learning Classification Algorithms</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="upload.html">Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main-content">
+        <!-- Your content goes here -->
+        <!-- ... (The content you provided in your request) ... -->
+        <div class="nav-container">
+            <h3 class="tab">Content:</h3>
+            <li><a style="text-decoration: none" href="#section1">1.Metrics and the use of Metrics</a></li>
+            <li><a style="text-decoration: none" href="#section2">2.List of Metrics</a></li>
+            <li><a style="text-decoration: none" href="#section3">3.Confusion Matrix</a></li>
+            <li><a style="text-decoration: none" href="#section4">4.Accuracy</a></li>
+            <li><a style="text-decoration: none" href="#section5">5.Precision</a></li>
+            <li><a style="text-decoration: none" href="#section6">6.Recall (Sensitivity or True Positive Rate)</a></li>
+            <li><a style="text-decoration: none" href="#section7">7.F1 Score</a></li>
+            <li><a style="text-decoration: none" href="#section8">8.Receiver Operating Characteristic (ROC)</a></li>
+            <li><a style="text-decoration: none" href="#section9">9.Area Under the Curve(AUC)</a></li>
+            <li><a style="text-decoration: none" href="#section10">10.Matthews Correlation Coefficient (MCC)</a></li>
+            <li><a style="text-decoration: none" href="#section11">11.Cohen's Kappa</a></li>
+
+            <!--ul><a href="#section6.2" class="tab">Multi-class classification</a></ul>
+            <ul><a href="#section6.3" class="tab">Multi-Label Classification</a></ul>
+            <ul><a href="#section6.4" class="tab">Imbalanced Classification</a></ul-->
+        </div>
+
+        <h1 id="section1">Metrics and the use of Metrics</h1>
+        <p align="justify">  Metrics play a pivotal role in gauging the effectiveness and suitability of models for specific tasks. These quantitative measures provide insights into how well a model is performing, enabling data scientists to make informed decisions about its deployment or optimization. The comparison of different models becomes more straightforward with the help of metrics, guiding practitioners to select the most appropriate algorithm for a given classification problem.</p>
+        <p align="justify">  One of the critical aspects addressed by these metrics is the ability to identify areas for improvement and optimization. By analyzing metrics, data scientists can gain a deeper understanding of a model's strengths and weaknesses, allowing them to fine-tune parameters and enhance overall predictive capabilities. These measures also contribute to the continuous improvement of models, ensuring their adaptability to evolving datasets and changing conditions. Regular monitoring of metrics facilitates the detection of issues such as overfitting or underfitting, guiding practitioners in maintaining models that are both accurate and robust.</p>            
+        <p align="justify">  Moreover, metrics serve as a common language for communication between technical experts and non-technical stakeholders. They provide a means for conveying the performance of a classification model in a comprehensible manner, fostering collaboration and understanding across diverse teams. Additionally, metrics are instrumental in addressing problem-specific evaluation criteria, allowing for tailored assessments based on the unique priorities of a given classification task. Overall, metrics are indispensable tools that contribute to the interpretability, optimization, and continuous enhancement of machine learning classification algorithms.</p>
+        
+        <h4 id="section2">List of Metrics</h4>
+        <p align="justify">Evaluating the performance of classification algorithms involves using various metrics to assess their accuracy and effectiveness. Here are some key metrics commonly employed for this purpose:</p>
+        <ol>
+            <li>Confusion Matrix</li>
+            <li>Accuracy</li>
+            <li>Precision</li>
+            <li>Recall (Sensitivity or True Positive Rate)</li>
+            <li>F1 Score</li>
+            <li>Receiver Operating Characteristic (ROC)</li>
+            <li>Area Under the Curve(AUC)</li>
+            <li>Matthews Correlation Coefficient (MCC)</li>
+            <li>Cohen's Kappa</li>
+        </ol>
+        
+        <h5 id="section3">Confusion Matrix</h5>
+        <img src="Images/Confusion_Mat.png"></img>
+        <p align="justify">A confusion matrix is a table that is used to evaluate the performance of a classification algorithm on a set of data for which the true values are known. It provides a summary of the predicted and actual classifications, showing the number of true positives, true negatives, false positives, and false negatives. The key elements of a confusion matrix are:</p>
+        <p align="justify"><b>True Positives (TP): </b>The number of instances that were correctly predicted as positive by the model.</p>
+        <p align="justify"><b>True Negatives (TN): </b>The number of instances that were correctly predicted as negative by the model.</p>
+        <p align="justify"><b>False Positives (FP): </b>The number of instances that were incorrectly predicted as positive by the model.</p>
+        <p align="justify"><b>False Negatives (FN): </b>The number of instances that were incorrectly predicted as negative by the model.</p>
+
+        <h5 id="section4">Accuracy</h5>
+        <p align="justify">In simple linear regression, there is one independent variable, while in multiple linear regression, there are multiple independent variables. The linear relationship is represented by the equation of a straight line:</p>
+        <img src="Images/Accuracy.png"></img>
+
+        <h5 id="section5">Precision</h5>
+        <p align="justify">Precision, also known as Positive Predictive Value (PPV), is a performance metric used in binary and multiclass classification. It measures the accuracy of the positive predictions made by a model. Precision is calculated using the following formula</p>
+        <img src="Images/Precision.png"></img>
+
+        <h5 id="section6">Recall</h5>
+        <p align="justify">Recall, also known as Sensitivity or True Positive Rate, is a performance metric used in binary and multiclass classification. It measures the ability of a model to capture all the relevant instances of a positive class. Recall is calculated using the following formula:</p>
+        <img src="Images/Recall.png"></img>
+
+        <h5 id="section7">F1 Score</h5>
+        <p align="justify">The F1 Score is a metric that combines both precision and recall into a single value, providing a balanced measure of a model's performance, especially in binary classification settings. It is particularly useful when there is an imbalance between the classes or when false positives and false negatives have different consequences.<br>The F1 Score is calculated using the following formula:</p>
+        <img src="Images/F1_Score.png"></img>
+
+        <h5 id="section8">Receiver Operating Characteristic (ROC)</h5>
+        <p align="justify">ROC, which stands for Receiver Operating Characteristic, is a graphical representation of a binary classification model's performance across different discrimination thresholds. It is a valuable tool for assessing the trade-off between sensitivity (recall) and specificity at various decision thresholds.<br>The ROC curve is created by plotting the True Positive Rate (Sensitivity) against the False Positive Rate (1 - Specificity) at different threshold settings. The curve illustrates how well the model can distinguish between the positive and negative classes across a range of sensitivity and specificity values.</p>
+        <img src="Images/ROC.png"></img>
+
+        <h5 id="section9">Area Under the Curve(AUC)</h5>
+        <p align="justify">The Area Under the Curve (AUC) is a numerical measure used to evaluate the performance of a binary classification model based on its Receiver Operating Characteristic (ROC) curve. The ROC curve plots the True Positive Rate (Sensitivity) against the False Positive Rate (1 - Specificity) at various decision thresholds.</p>    
+        <p align="justify">The AUC-ROC quantifies the overall ability of a model to discriminate between the positive and negative classes across different thresholds. The AUC value ranges from 0 to 1, where:</p>
+        <ul>
+            <li>AUC = 0.5: The model performs no better than random guessing.</li>
+            <li>AUC > 0.5: Indicates better-than-random performance.</li>
+            <li>AUC = 1: Represents perfect classification.</li>
+        </ul>    
+
+        <h5 id="section10">Matthews Correlation Coefficient (MCC)</h5>
+        <p align="justify">The Matthews Correlation Coefficient (MCC) is a metric used to evaluate the performance of binary classification models. It takes into account true positives, true negatives, false positives, and false negatives, providing a balanced measure that considers the entire confusion matrix.</p>
+        <p>The formula for Matthews Correlation Coefficient is given by:</p>
+        <img src="Images/MCC.png"></img>
+
+        <h5 id="section10">Cohen's Kappa</h5>
+        <p align="justify">Cohen's Kappa (κ) is a statistical measure of inter-rater agreement or reliability for categorical items, such as classification tasks in machine learning. It assesses the agreement between two raters (or between a model and human annotators) by comparing the observed agreement to the agreement expected by chance.</p>
+        <p align="justify">The formula for Cohen's Kappa is given by:</p>
+        <p align="center"><b>Cohen's Kappa = (Observed Accuracy - Expected Accuracy) / (1 - Expected Accuracy)</b></p>
+        <br><br>
+
+        
+
+    </body>
+    </section>
+
+    <footer>
+        <p>Copyrights &copy; 2024 by Manoj Nagarajan</p>
+    </footer>
+
+</body>
+</html>
