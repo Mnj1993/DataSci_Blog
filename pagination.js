@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Thumbnail descriptions array
     const thumbnailDescriptions = [
-        "Data Mining",
-        "Predictive Analytics",
-        "Big Data",
-        "Neural Networks",
-        "Regression Analysis",
+        "Classification",
+        "Metrics",
+        "Long short-term memory",
+        "Regression",
+        "XGBoost",
         "Clustering",
         "Natural Language Processing (NLP)",
         "Feature Engineering",
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             thumbnailWrapper.className = "thumbnail-wrapper";
 
             const thumbnail = document.createElement("a");
-            thumbnail.href = `article${i + 1}.html`; // Set the link to the corresponding article
+            thumbnail.href = `${thumbnailDescriptions[i]}.html`; // Set the link to the corresponding article
             thumbnail.className = "thumbnail";
 
             const thumbnailImage = document.createElement("img");
